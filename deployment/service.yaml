@@ -2,7 +2,7 @@ apiVersion: v1
 kind: Service
 metadata:
   name: blue-green-service
-  namespace: blue-green
+  namespace: blue-gree
 spec:
   selector:
     app: blue-green-deploy
