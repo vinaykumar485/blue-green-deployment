@@ -13,10 +13,14 @@ crete deployment.yaml file for both blue and green saperatly
     vi green-deployment.yaml
 
 create service.yaml file
- here most importent part is "version"
-    
+
     vi service.yaml
 
+here most importent part is "version"
+
+    selector:
+        app: blue-green-deploy
+        version: blue
 
 we have to mention it carefully , whether it is blue or green, for that paricluare version, trafic will be diverted 
 
@@ -108,3 +112,42 @@ If Blue serves:
             "BLUE VERSION"
 
 Everything is working
+
+
+
+
+
+
+
+How is rollback done in Blue-Green?
+-----------------------------------
+
+Both Blue and Green are already running.
+
+"You simply change the Service selector"
+
+Current Service:
+
+selector:
+  app: blue-green-deploy
+  version: green
+
+Rollback:
+
+selector:
+  app: blue-green-deploy
+  version: blue
+
+Apply it:
+
+    kubectl apply -f service.yaml
+
+That's it.
+
+
+
+
+
+
+
+
