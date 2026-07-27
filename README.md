@@ -56,4 +56,55 @@ and then describe the service, you will see the chnage in end point and version 
 absorve the end point and the version now,
 
 which indicates thet , trafice is now routing to green pods.
--------------------------------------------------------------------------------------------------------------------------------
+
+VERIFICATION:
+
+    Verify Deployments
+    
+    kubectl get deployment -n < namepsace name >
+
+    kubectl describe deployment < deployment name > -n < namepsace >
+
+kubectl get pods -o wide -n , namepsace >
+
+kubectl get pods --show-labels -n < name space >
+
+kubectl get svc -n < namespace >
+
+kubectl describe svc < service name > -n < namespace >
+
+
+    Check:
+
+    Selector:
+    version=blue
+
+        Then verify:
+
+        Endpoints:
+        192.168.10.15
+        192.168.21.18
+
+            These should be the Blue Pod IPs.
+
+Verify AWS Load Balancer
+
+    kubectl get svc -n blue-gree
+
+Copy the loadbalcer URL :
+
+    a1b2c3d4.us-east-1.elb.amazonaws.com
+
+Open it in a browser:
+
+        http://a1b2c3d4.us-east-1.elb.amazonaws.com
+
+                        or
+
+        curl http://a1b2c3d4.us-east-1.elb.amazonaws.com
+
+If Blue serves:
+
+            "BLUE VERSION"
+
+Everything is working
